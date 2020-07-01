@@ -31,11 +31,41 @@ public class Main {
 //            System.out.println();
 //        }
 //        System.out.println(PeakElement.Peak_2D_Array(array2D, 0, array2D[0].length-1));
-            DocDist docDist = new DocDist("1.txt", "2.txt");
-        try {
-            docDist.getDistinctOfFiles();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+
+//        DocDist docDist = new DocDist("1.txt", "2.txt");
+//        try {
+//            docDist.getDistinctOfFiles();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        //heap
+//        int[] array2 = new int[1000];
+//        for (int i = 0; i < array2.length; i++){
+//            array2[i] = random.nextInt(500);
+//        }
+//        //int[] array = {27, 17, 3, 16, 13, 10, 1, 5, 7, 12, 4, 8, 9, 0};
+//        System.out.println(Arrays.toString(Heaps.heap_sort(array2)));
+
+        //Binary tree search
+        int size = 1000;
+        BST<Integer> bst = new BST<>();
+        for (int i = 0; i < size; i++){
+            bst.insert(random.nextInt(500));
         }
+
+//        bst.insert(362);
+//        bst.insert(400);
+//        bst.insert(117);
+//        bst.insert(299);
+//        bst.insert(51);
+//        bst.insert(271);
+//        bst.insert(302);
+//        bst.insert(463);
+//        bst.insert(102);
+//        bst.insert(73);
+//        bst.insert(340);
+        bst.find(340);
     }
 }

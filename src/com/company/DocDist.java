@@ -15,7 +15,6 @@ public class DocDist {
         Doc2 = doc2;
     }
 
-
     public void getDistinctOfFiles() throws IOException {
         Map<String, Integer> freq_map1 = getFileFreq(Doc1);
         Map<String, Integer> freq_map2 = getFileFreq(Doc2);
@@ -71,6 +70,22 @@ public class DocDist {
 
         String[] words_array = replaced.split("\\s");
         return words_array;
+    }
+
+    private void insertion_sort(int[] array){
+        //O(n)
+        for (int i = 0; i<array.length; i++){
+            //O(1)
+            int key = array[i];
+            //O(1)
+            int j = i-1;
+            //O(n)
+            while (j > -1 && array[j] > key){
+                array[j+1] = array[j];
+            }
+            //O(n)
+            array[j] = key;
+        }
     }
 
     private HashMap<String, Integer> count_frequency(String[] words_array){
