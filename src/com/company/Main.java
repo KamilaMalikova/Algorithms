@@ -49,23 +49,28 @@ public class Main {
 //        System.out.println(Arrays.toString(Heaps.heap_sort(array2)));
 
         //Binary tree search
-        int size = 1000;
+//        int size = 1000;
         BST<Integer> bst = new BST<>();
-        for (int i = 0; i < size; i++){
-            bst.insert(random.nextInt(500));
-        }
+//        for (int i = 0; i < size; i++){
+//            bst.insert(random.nextInt(500));
+//        }
 
-//        bst.insert(362);
-//        bst.insert(400);
-//        bst.insert(117);
-//        bst.insert(299);
-//        bst.insert(51);
-//        bst.insert(271);
-//        bst.insert(302);
-//        bst.insert(463);
-//        bst.insert(102);
-//        bst.insert(73);
-//        bst.insert(340);
+        bst.insert(362);
+        bst.insert(400);
+        bst.insert(117);
+        bst.insert(299);
+        bst.insert(51);
+        bst.insert(271);
+        bst.insert(302);
+        bst.insert(463);
+        bst.insert(102);
+        bst.insert(73);
+        bst.insert(340);
         bst.find(340);
+        bst.Min(51);
+        bst.Max(299);
+        bst.successor(299);
+        bst.delete(271);
+        bst.find(271);
     }
 }

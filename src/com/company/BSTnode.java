@@ -5,6 +5,7 @@ public class BSTnode <T extends Comparable<T>> {
     private BSTnode parent = null;
     private BSTnode left = null;
     private BSTnode right = null;
+    private int size = 0;
 
     public BSTnode(T key) {
         this.key = key;
@@ -73,4 +74,7 @@ public class BSTnode <T extends Comparable<T>> {
         if (this.right != null) return true;
         else return false;
     }
+
+
+
 }
