@@ -70,7 +70,7 @@ public class AVLTree<T extends Comparable>{
 
         public int update_height(){
             if (hasBothSubNodes()){
-                height = Math.max(this.left.height, this.right.height)+1;
+                height = (Math.max(this.left.height, this.right.height))+1;
             }
             else if (hasLeftSubNode()){
                 height = this.left.height+1;
@@ -152,7 +152,6 @@ public class AVLTree<T extends Comparable>{
     public void balanceTree(AVLnode node){
         while (node != null){
             node.update_height();
-            System.out.println("Val: "+node.getKey()+" | "+node.getHeight());
             if (node.hasBothSubNodes()){
                 if (node.getLeft().getHeight() >= (2+node.getRight().getHeight())){
                     int left_left_height = (node.getLeft().getLeft() == null) ? -1 : node.getLeft().getLeft().getHeight();
@@ -177,6 +176,7 @@ public class AVLTree<T extends Comparable>{
                         this.rotateLeft(node);
                     }
                 }
+                System.out.println("Val: "+node.getKey()+" | "+node.getHeight());
             }
             node = node.getParent();
         }
@@ -203,9 +203,9 @@ public class AVLTree<T extends Comparable>{
         }
         y.right = x;
         x.parent = y;
-        x.update_height();
         y.update_height();
-
+        x.update_height();
+        y.right.update_height();
     }
 
     private void rotateLeft(AVLnode x){
@@ -242,7 +242,8 @@ public class AVLTree<T extends Comparable>{
             int steps = 0;
             node = root;
             while (node != null){
-                if (!node.hasSubNodes()) break;
+                System.out.println("Search: "+node.getKey() +" | "+node.getHeight());
+               // if (!node.hasSubNodes()) break;
                 if (node.getKey().compareTo(value) == 0){
                     steps++;
                     System.out.println("found in "+steps);
@@ -260,10 +261,97 @@ public class AVLTree<T extends Comparable>{
                     steps++;
                     System.out.println("move to left on "+node.getKey());
                 }
+                else if (!node.hasBothSubNodes()) break;
             }
         }
         return node;
     }
 
+    public AVLnode delete(T value){
+        AVLnode node = this.find(value);
+        if (node != null){
+            if (!node.hasLeftSubNode() && !node.hasRightSubNode()){
+                System.out.println("Has no subnodes");
+                if (node.getParent().getRight() == node)
+                    node.getParent().setRight(null);
+                else {
+                    node.getParent().setLeft(null);
+                }
+            }
+            else if (node.hasLeftSubNode() && !node.hasRightSubNode()){
+                System.out.println("Has left subnode");
+                this.replace(node, node.getLeft());
+            }
+            else if (!node.hasLeftSubNode() && node.hasRightSubNode()){
+                System.out.println("Has right subnode");
+                this.replace(node, node.getRight());
+            }
+            else {
+                System.out.println("Has both subnodes");
+                AVLnode successor = this.successor(node);
+                this.replace(node, successor);
+            }
+        }
+        AVLnode balancing_node = node;
+        while (balancing_node != null){
+            balancing_node.update_height();
+            balanceTree(balancing_node);
+            balancing_node = balancing_node.getParent();
+        }
+        return node;
+    }
 
+    private void replace(AVLnode nodeToRemove, AVLnode nodeToReplace){
+        //has one subnode
+        AVLnode nodeToReplaceParent = nodeToReplace.getParent();
+        if (nodeToReplace.getParent() == nodeToRemove){
+            if (nodeToRemove.getParent().getRight() == nodeToRemove){
+                nodeToReplace.setParent(nodeToRemove.getParent());
+                nodeToReplace.getParent().setRight(nodeToReplace);
+            }
+            else if (nodeToRemove.getParent().getLeft() == nodeToRemove){
+                nodeToReplace.setParent(nodeToRemove.getParent());
+                nodeToReplace.getParent().setLeft(nodeToReplace);
+            }
+        }
+        //has two subnodes
+        else {
+            if (nodeToReplace.hasRightSubNode()){
+                nodeToReplace.getRight().setParent(nodeToReplace.getParent());
+                nodeToReplace.getParent().setLeft(nodeToReplace.getRight());
+            }
+            nodeToReplace.setParent(nodeToRemove.getParent());
+            if (nodeToRemove.getParent().getLeft() == nodeToRemove){
+                nodeToReplace.getParent().setLeft(nodeToReplace);
+            }
+            else if(nodeToRemove.getParent().getRight() == nodeToRemove){
+                nodeToReplace.getParent().setRight(nodeToReplace);
+            }
+            nodeToReplace.setLeft(nodeToRemove.getLeft());
+            nodeToReplace.getLeft().setParent(nodeToReplace);
+            nodeToReplace.setRight(nodeToRemove.getRight());
+            nodeToReplace.getLeft().setParent(nodeToReplace);
+        }
+        while (nodeToReplaceParent != null) {
+            this.balanceTree(nodeToReplaceParent);
+            nodeToReplaceParent = nodeToReplaceParent.getParent();
+        }
+        while (nodeToReplace != null){
+            this.balanceTree(nodeToReplace);
+            nodeToReplace = nodeToReplace.getParent();
+        }
+    }
+
+    public void successor(T value){
+        AVLnode node = find(value);
+        this.successor(node);
+    }
+    public AVLnode successor(AVLnode node){
+        AVLnode successor = node.getRight();
+        while(successor.hasLeftSubNode()){
+            successor = successor.getLeft();
+        }
+        System.out.println("Successor: "+successor.getKey());
+        return successor;
+    }
 }

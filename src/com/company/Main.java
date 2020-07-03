@@ -49,7 +49,7 @@ public class Main {
 //        System.out.println(Arrays.toString(Heaps.heap_sort(array2)));
 
         //Binary tree search
-//        int size = 1000;
+        int size = 1000000;
 //        BST<Integer> bst = new BST<>();
 ////        for (int i = 0; i < size; i++){
 ////            bst.insert(random.nextInt(500));
@@ -73,24 +73,27 @@ public class Main {
 //        bst.delete(271);
 //        bst.find(271);
 //
-        AVLTree<Integer> bst = new AVLTree<>();
-////        for (int i = 0; i < size; i++){
-////            bst.insert(random.nextInt(500));
-////        }
+        AVLTree<Integer> avl = new AVLTree<>();
+        for (int i = 0; i < size; i++){
+            avl.insert(random.nextInt(500));
+        }
 
-        bst.insert(362);
-        bst.insert(400);
-        bst.insert(117);
-        bst.insert(299);
-        bst.insert(51);
-        bst.insert(271);
-        bst.insert(302);
-        bst.insert(463);
-        bst.insert(102);
-        bst.insert(73);
-        bst.insert(340);
-        bst.find(340);
+//        avl.insert(362);
+//        avl.insert(400);
+//        avl.insert(117);
+//        avl.insert(299);
+//        avl.insert(51);
+//        avl.insert(271);
+//        avl.insert(302);
+//        avl.insert(463);
+//        avl.insert(102);
+//        avl.insert(73);
+//        avl.insert(340);
+      //  bst.find(340);
 
-        bst.find(271);
+//        avl.find(117);
+
+       // System.out.println(avl.delete(271).getKey());
+        avl.find(271);
     }
 }
