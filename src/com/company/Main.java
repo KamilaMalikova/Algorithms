@@ -95,10 +95,13 @@ public class Main {
 
 
         //Counting sort
-        int[] array = new int[10000];
-        for (int i = 0; i<10000; i++){
-            array[i] = random.nextInt(900);
-        }
-        Sort.radixsort(array);
+//        int[] array = new int[10000];
+//        for (int i = 0; i<10000; i++){
+//            array[i] = random.nextInt(900);
+//        }
+//        Sort.radixsort(array);
+        String txt = "GEEKS FOR GEEKS";
+        String pat = "GEEK";
+        StringSearch.RabinKarpSearch(txt, pat);
     }
 }
