@@ -15,6 +15,10 @@ public class DocDist {
         Doc2 = doc2;
     }
 
+    public DocDist() {
+
+    }
+
     public void getDistinctOfFiles() throws IOException {
         Map<String, Integer> freq_map1 = getFileFreq(Doc1);
         Map<String, Integer> freq_map2 = getFileFreq(Doc2);
@@ -51,7 +55,7 @@ public class DocDist {
         return freq_mapping;
     }
 
-    private String read_file(String filename) throws IOException {
+    public String read_file(String filename) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         StringBuilder stringBuilder = new StringBuilder();
         char[] buffer = new char[10];
