@@ -1,13 +1,12 @@
 package com.company;
 
-import javax.print.Doc;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Random random = new Random();
 //        int[] array = new int[10000];
 //        for (int i = 0; i < array.length; i++) {
@@ -50,7 +49,7 @@ public class Main {
 //        System.out.println(Arrays.toString(Heaps.heap_sort(array2)));
 
         //Binary tree search
-       // int size = 1_000_000;
+        int size = 1_000_000;
 //        BST<Integer> bst = new BST<>();
 ////        for (int i = 0; i < size; i++){
 ////            bst.insert(random.nextInt(500));
@@ -96,14 +95,10 @@ public class Main {
 
 
         //Counting sort
-//        int[] array = new int[10000];
-//        for (int i = 0; i<10000; i++){
-//            array[i] = random.nextInt(900);
-//        }
-//        Sort.radixsort(array);
-        String txt = new DocDist().read_file("1.txt");
-        System.out.println(txt);
-        String pat = "lorem";
-        StringSearch.BoyerMoore(txt, pat);
+        int[] array = new int[10000];
+        for (int i = 0; i<10000; i++){
+            array[i] = random.nextInt(900);
+        }
+        Sort.radixsort(array);
     }
 }
