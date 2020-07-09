@@ -1,11 +1,8 @@
 package com.company;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.function.DoubleToIntFunction;
 
-=======
->>>>>>> 86e827af572e345f01e8eaf6910f64887fbf5453
 public class StringSearch {
 
     public static void RabinKarpSearch(String txt, String pat){
@@ -64,8 +61,6 @@ public class StringSearch {
             }
         }
     }
-
-<<<<<<< HEAD
     public static void BoyerMoore(String text, String pattern){
         int patternLen = pattern.length();
         int textLen = text.length();
