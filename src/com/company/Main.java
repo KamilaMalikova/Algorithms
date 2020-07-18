@@ -95,10 +95,12 @@ public class Main {
 
 
         //Counting sort
-        int[] array = new int[10000];
-        for (int i = 0; i<10000; i++){
-            array[i] = random.nextInt(900);
-        }
-        Sort.radixsort(array);
+//        int[] array = new int[10000];
+//        for (int i = 0; i<10000; i++){
+//            array[i] = random.nextInt(900);
+//        }
+//        Sort.radixsort(array);
+
+        System.out.println(1_525_252_525 * 1_525_252_525);
     }
 }
