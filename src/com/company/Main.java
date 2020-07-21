@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
+
 public class Main {
 
     public static void main(String[] args) {
@@ -49,7 +50,7 @@ public class Main {
 //        System.out.println(Arrays.toString(Heaps.heap_sort(array2)));
 
         //Binary tree search
-        int size = 1_000_000;
+    //    int size = 1_000_000;
 //        BST<Integer> bst = new BST<>();
 ////        for (int i = 0; i < size; i++){
 ////            bst.insert(random.nextInt(500));
@@ -100,7 +101,19 @@ public class Main {
 //            array[i] = random.nextInt(900);
 //        }
 //        Sort.radixsort(array);
+       // TestBreathFirst();
+        TestDepthFirst();
+    }
 
-        System.out.println(1_525_252_525 * 1_525_252_525);
+    public static void TestBreathFirst(){
+        BreathFirst breathFirst = new BreathFirst();
+        Node node = breathFirst.CreateGraph();
+        breathFirst.BreathFirstSearch(node, 6);
+    }
+
+    public static void TestDepthFirst(){
+        DepthFirst depthFirst = new DepthFirst();
+        Node node = depthFirst.CreateGraph();
+        depthFirst.DepthFirstTraversing(node);
     }
 }
