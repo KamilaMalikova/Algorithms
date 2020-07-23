@@ -102,7 +102,8 @@ public class Main {
 //        }
 //        Sort.radixsort(array);
        // TestBreathFirst();
-        TestDepthFirst();
+        //TestDepthFirst();
+        TestDijkstra();
     }
 
     public static void TestBreathFirst(){
@@ -115,5 +116,12 @@ public class Main {
         DepthFirst depthFirst = new DepthFirst();
         Node node = depthFirst.CreateGraph();
         depthFirst.DepthFirstTraversing(node);
+    }
+
+    public static void TestDijkstra(){
+        Graph graph = new Graph();
+        graph.CreateRandomGraph();
+
+        Dijkstra.FindShortestPath(graph, 0, 4);
     }
 }
