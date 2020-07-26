@@ -1,15 +1,19 @@
 package com.company;
 
 public class Graph {
-    private int[][] AdjacencyMatrix;
-
+    private Integer[][] AdjacencyMatrix;
+    private int[] Vertexes;
     public Graph(int vertexes) {
-        AdjacencyMatrix = new int[vertexes][vertexes];
+        AdjacencyMatrix = new Integer[vertexes][vertexes];
+        Vertexes =new int[vertexes];
+        for (int i = 0; i< vertexes; i++){
+            Vertexes[i] = i;
+        }
     }
     public Graph() {
     }
     public void CreateRandomGraph(){
-        if (AdjacencyMatrix == null) AdjacencyMatrix = new int[5][5];
+        if (AdjacencyMatrix == null) AdjacencyMatrix = new Integer[5][5];
         this.addAdjacencyEdge(0, 1, 10);
         this.addAdjacencyEdge(0, 3, 30);
         this.addAdjacencyEdge(0, 4, 100);
@@ -17,7 +21,10 @@ public class Graph {
         this.addAdjacencyEdge(2, 4, 10);
         this.addAdjacencyEdge(3, 2, 20);
         this.addAdjacencyEdge(3, 4, 60);
-
+        Vertexes =new int[5];
+        for (int i = 0; i< 5; i++){
+            Vertexes[i] = i;
+        }
     }
 
     public void addAdjacencyEdge(int start, int end, int weight){
@@ -27,7 +34,11 @@ public class Graph {
         return AdjacencyMatrix[start][end];
     }
 
-    public int[][] getAdjacencyMatrix() {
+    public Integer[][] getAdjacencyMatrix() {
         return AdjacencyMatrix;
+    }
+
+    public int[] getVertexes() {
+        return Vertexes;
     }
 }

@@ -1,29 +1,36 @@
 package com.company;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Dijkstra {
-    public static void FindShortestPath(Graph graph, int startVertex, int endVertex){
-        int[][] matrix = graph.getAdjacencyMatrix();
+    public static void FindShortestPath(Graph graph, int[] R, int startVertex, int endVertex){
+        Integer[][] matrix = graph.getAdjacencyMatrix();
 
         if (startVertex >= matrix.length || endVertex >= matrix.length) return;
 
         LinkedList<Integer> S = new LinkedList<>();
         S.add(startVertex);
-        int[] D = new int[matrix.length];
+        Integer[] D = new Integer[matrix.length];
         for (int i = 1; i < matrix.length; i++){
             D[i] = matrix[startVertex][i];
         }
-        for (int i = 0; i < matrix.length; i++){
+        while (S.size() <= matrix.length){
             System.out.println(Arrays.toString(D));
-            int w = GetIndexOfMin(D);
-            System.out.println(w);
+            int w = GetIndexOfMin(D, R);
+            System.out.println("Min: "+w);
             S.add(w);
+            R[w] = -1;
             System.out.println(S);
-            for (int v = 0; v<matrix[i].length; v++){
-                System.out.println(v+": "+D[v] +" - "+D[w]+matrix[w][v]);
-                if (D[v] >= D[w]+matrix[w][v]) D[v] =  D[w]+matrix[w][v];
+            System.out.println(Arrays.toString(R));
+            for (int v: R){
+                if (v == -1) continue;
+                //System.out.println(v+": "+D[v] +" - "+D[w]+" - "+matrix[w][v]);
+                if(matrix[w][v] != null)
+                    if (D[v] == null && matrix[w][v] != null) D[v] = matrix[w][v];
+                    else if (matrix[w][v] != null)
+                        if (D[v] >= D[w]+matrix[w][v]) D[v] =  D[w]+matrix[w][v];
                 System.out.println(D[v]);
             }
         }
@@ -31,13 +38,13 @@ public class Dijkstra {
         System.out.println(S);
     }
 
-    private static int GetIndexOfMin(int[] array){
+    private static int GetIndexOfMin(Integer[] array, int[] R){
         int j = 0;
         for (int i = 0; i< array.length; i++){
-            if (array[i] > 0 && array[j] == 0){
-                j = i;
+            if (array[i] != null && R[i] != -1){
+                if (array[j] == null) j = i;
+                else if (array[i] < array[j] && array[i] > 0) j = i;
             }
-            else if (array[i] < array[j] && array[i] > 0) j = i;
         }
         return j;
     }

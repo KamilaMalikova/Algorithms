@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Random;
 
 
@@ -103,7 +104,8 @@ public class Main {
 //        Sort.radixsort(array);
        // TestBreathFirst();
         //TestDepthFirst();
-        TestDijkstra();
+        //TestDijkstra();
+        TestBellmanFord();
     }
 
     public static void TestBreathFirst(){
@@ -121,7 +123,14 @@ public class Main {
     public static void TestDijkstra(){
         Graph graph = new Graph();
         graph.CreateRandomGraph();
+        int[] R = graph.getVertexes();
+        System.out.println(Arrays.toString(R));
+        Dijkstra.FindShortestPath(graph, R, 0, 4);
+    }
 
-        Dijkstra.FindShortestPath(graph, 0, 4);
+    public static void TestBellmanFord(){
+        BellmanFord bellmanFord = new BellmanFord();
+        Vertex[] vertices = bellmanFord.CreateGraph();
+        bellmanFord.ShortestPathSearch(0, vertices);
     }
 }
