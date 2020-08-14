@@ -105,7 +105,8 @@ public class Main {
        // TestBreathFirst();
         //TestDepthFirst();
         //TestDijkstra();
-        TestBellmanFord();
+        //TestBellmanFord();
+        TestStaircase();
     }
 
     public static void TestBreathFirst(){
@@ -132,5 +133,22 @@ public class Main {
         BellmanFord bellmanFord = new BellmanFord();
         Vertex[] vertices = bellmanFord.CreateGraph();
         bellmanFord.ShortestPathSearch(0, vertices);
+    }
+
+    public static void TestStaircase(){
+        StairCase stairCase = new StairCase();
+        int[] p = {0, 3, 2, 4, 6, 1, 1, 5, 3};
+     //   System.out.println(Arrays.toString(stairCase.paidStaircase(8, p)));
+//        int[][] grid = {
+//                {0,0,0,0},
+//                {0,0,1,1},
+//                {0,0,0,0}};
+//        System.out.println(stairCase.uniquePathsWithObstacles(grid));
+        int[][] grid = {
+                {0,2,2,1},
+                {3,1,1,100},
+                {4,4,2,0}};
+        System.out.println(stairCase.maxProfit(grid));
+
     }
 }
